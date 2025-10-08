@@ -1,10 +1,33 @@
 name: Eighth Workflow
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      titleCustom:
+        description: Type the title
+        type: string
+        required: true
+        default: "Hello world"
+      selectCustom:
+        description: Select value
+        type: choice
+        required: true
+        options:
+          - Value 1
+          - Value 2
+          - Value 3
+          - Value 4
+        default: "Value 2"
+      checkCustom:
+        description: Checkbox
+        type: boolean
+        required: false
+
 jobs:
   run-first-command:
     runs-on: ubuntu-latest
     steps:
-      - name: Command in multiline
+      - name: Event vars
         run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REF
+          echo "Title: ${{ inputs.titleCustom }}"
+          echo "Title: ${{ inputs.selectCustom }}"
+          echo "Title: ${{ inputs.checkCustom }}"
